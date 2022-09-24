@@ -11,6 +11,12 @@ export default function App() {
     setTask(null);
         console.log('Hello');
   }
+
+  const completeTask = (index) =>{
+      let tempItems = [...taskItems];
+      tempItems.splice(index,1);
+      setTaskItems(tempItems);
+  }
   return (
     <View style={styles.container}>
       <View style={styles.tasksWrapper}>
@@ -18,7 +24,11 @@ export default function App() {
         <View style={styles.items}>
           {
              taskItems.map((value,index) =>{
-                return <Task key={index}text={value}/>
+                return( 
+                  <TouchableOpacity key = {index} onPress={()=> completeTask(index)}>
+                <Task text={value}/>
+                </TouchableOpacity>
+                )
              })
           }
           {/* <Task text={'Text1'} />
